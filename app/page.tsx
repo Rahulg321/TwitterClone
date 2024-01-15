@@ -3,7 +3,6 @@ import React from "react";
 const page = () => {
   return (
     <div className="text-xl">
-      <h1>Rahul Gupta is a goo boy</h1>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
       consequatur vitae, blanditiis quia architecto quae, perspiciatis soluta
       quisquam sint libero delectus illum obcaecati eaque est similique earum
