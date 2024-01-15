@@ -19,10 +19,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="bg-gray-900 text-gray-100">
-      <body className={clsx(urbanist.className, "min-h-screen parent")}>
-        <Sidebar classname="bg-pink-400 left" />
-        <main className=" px-4 py-6">{children}</main>
-        <RightSidebar classname=" bg-gray-500 right" />
+      <body className={clsx(urbanist.className, "parent min-h-screen")}>
+        <Sidebar classname=" left" />
+        <main className="py-6">{children}</main>
+        <RightSidebar classname=" right" />
       </body>
     </html>
   );
