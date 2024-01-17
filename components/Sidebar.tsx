@@ -11,6 +11,7 @@ import { LiaClipboardListSolid } from "react-icons/lia";
 import { BsPeopleFill } from "react-icons/bs";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { CiSettings } from "react-icons/ci";
+import NewTweetModal from "./Modals/NewTweetModal";
 
 type SidebarProps = {
   classname?: string;
@@ -19,10 +20,10 @@ type SidebarProps = {
 const Sidebar = ({ classname }: SidebarProps) => {
   return (
     <div className={clsx("border-r-2 py-4 pl-24 pr-12", classname)}>
-      <div className="mb-4 ml-4 text-4xl">
-        <FaXTwitter />
-      </div>
-      <div>
+      <div className="sticky top-2">
+        <div className="mb-4 ml-4 text-4xl">
+          <FaXTwitter />
+        </div>
         <NavLink linkIcon={<FaHome />} linkHref="/home" linkText="Home" />
         <NavLink
           linkIcon={<IoSearch />}
@@ -65,10 +66,8 @@ const Sidebar = ({ classname }: SidebarProps) => {
           linkText="Profile"
         />
         <NavLink linkIcon={<CiSettings />} linkHref="/blog" linkText="More" />
+        <NewTweetModal />
       </div>
-      <button className="mt-4 w-full rounded-xl bg-pink-600 px-8 py-4 transition hover:bg-pink-800">
-        Post
-      </button>
     </div>
   );
 };

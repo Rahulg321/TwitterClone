@@ -9,7 +9,7 @@ type RightSidebarProps = {
 
 const RightSidebar = ({ classname }: RightSidebarProps) => {
   return (
-    <div className={clsx("border-l-2 py-4 pl-4 pr-20", classname)}>
+    <div className={clsx(" border-l-2 py-4 pl-4 pr-20", classname)}>
       <input
         type="text"
         placeholder="search"
