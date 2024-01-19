@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Urbanist } from "next/font/google";
-import "./globals.css";
+import { Montserrat } from "next/font/google";
+import "../globals.css";
 import Sidebar from "@/components/Sidebar";
 import clsx from "clsx";
 import RightSidebar from "@/components/RightSidebar";
+import { Toaster } from "react-hot-toast";
 
-const urbanist = Urbanist({ subsets: ["latin"] });
+const urbanist = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Twitter Clone",
@@ -18,11 +19,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-gray-900 text-gray-100">
+    <html lang="en" className="bg-gray-950 text-gray-100">
       <body className={clsx(urbanist.className, "parent min-h-screen")}>
         <Sidebar classname="" />
         <main className="">{children}</main>
         <RightSidebar classname="" />
+        <Toaster position="bottom-center" />
       </body>
     </html>
   );

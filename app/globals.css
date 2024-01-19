@@ -7,6 +7,15 @@
   grid-template-columns: minmax(150px, 30%) 1fr minmax(150px, 30%);
 }
 
+@layer base{
+  :root{
+    --background: #33272a;
+    --static: #33272a;
+  }
+}
+
+
+
 @layer components{
   
   .external-link{

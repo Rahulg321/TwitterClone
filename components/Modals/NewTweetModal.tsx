@@ -27,7 +27,7 @@ const NewTweetModal = () => {
       <div className="">
         <dialog
           ref={modalRef}
-          className="modal absolute top-0 mt-5 rounded-2xl bg-slate-900 px-2 py-4 text-gray-100"
+          className="modal absolute top-0 mt-5 rounded-2xl bg-gray-950 px-2 py-4 text-gray-100"
         >
           <div
             onClick={onClose}

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { FaEarthAfrica } from "react-icons/fa6";
 import { GrGallery } from "react-icons/gr";
 import { MdOutlineGifBox } from "react-icons/md";
@@ -9,8 +9,11 @@ import { BsEmojiGrin } from "react-icons/bs";
 import { GrScheduleNew } from "react-icons/gr";
 import { FaLocationDot } from "react-icons/fa6";
 import { useRef, useEffect } from "react";
+import { addTweet } from "@/app/actions";
+import toast from "react-hot-toast";
 
 const NewTweetForm = () => {
+  const [loading, setLoading] = useState(false);
   const tweetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,10 +22,23 @@ const NewTweetForm = () => {
     }
   }, []);
 
-  const submitTweet = () => {
-    const tweet = tweetRef.current?.textContent;
-    console.log("tweet Submitted");
-    console.log("value of tweet is", tweet);
+  const submitTweet = async () => {
+    // manage loading states since we are in a client component and we are not using the built in form
+    setLoading(true);
+
+    if (tweetRef.current) {
+      const tweetText = tweetRef.current.textContent;
+      const response = await addTweet(tweetText);
+      if (response.error) {
+        toast.error(response.errorMessage);
+      }
+
+      if (response.success) {
+        toast.success(response.successMessage);
+      }
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -37,7 +53,7 @@ const NewTweetForm = () => {
         </span> */}
         <div
           contentEditable
-          className="my-4 block w-full resize-y bg-gray-900 text-2xl text-gray-400 focus:outline-none"
+          className="resize- my-4 block w-full text-2xl text-gray-400 focus:outline-none"
           ref={tweetRef}
         />
 
@@ -60,7 +76,7 @@ const NewTweetForm = () => {
             className="mb-2 rounded-xl bg-pink-500 px-6 py-2 transition hover:bg-pink-800"
             onClick={submitTweet}
           >
-            Post
+            {loading ? "Submitting Tweet" : "Post"}
           </button>
         </div>
       </div>

@@ -4,12 +4,18 @@ import { IoLocationSharp } from "react-icons/io5";
 import { FaLink } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 
-const UserProfileInfoSection = () => {
+const UserProfileInfoSection = ({
+  fullName,
+  userName,
+}: {
+  fullName: string;
+  userName: string;
+}) => {
   return (
     <div className="px-2">
       <div className="flex flex-col">
-        <span className="text-2xl font-bold">Rahul Gupta</span>
-        <span className="text-xl text-gray-400">@rg5353070</span>
+        <span className="text-2xl font-bold">{fullName}</span>
+        <span className="text-xl text-gray-400">{userName}</span>
       </div>
 
       <div className="my-4 leading-tight">

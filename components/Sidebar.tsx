@@ -12,12 +12,23 @@ import { BsPeopleFill } from "react-icons/bs";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { CiSettings } from "react-icons/ci";
 import NewTweetModal from "./Modals/NewTweetModal";
+import { IoBookmarks } from "react-icons/io5";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { extractUsername } from "@/lib/ExtractUsername";
 
 type SidebarProps = {
   classname?: string;
 };
 
-const Sidebar = ({ classname }: SidebarProps) => {
+const Sidebar = async ({ classname }: SidebarProps) => {
+  const { getUser, isAuthenticated } = getKindeServerSession();
+
+  const user = await getUser();
+  let username;
+  if (user && user.email) {
+    username = extractUsername(user.email);
+  }
+
   return (
     <div className={clsx("border-r-2 py-4 pl-24 pr-12", classname)}>
       <div className="sticky top-2">
@@ -41,6 +52,11 @@ const Sidebar = ({ classname }: SidebarProps) => {
           linkText="Messages"
         />
         <NavLink
+          linkIcon={<IoBookmarks />}
+          linkHref="/bookmarks"
+          linkText="Bookmarks"
+        />
+        <NavLink
           linkIcon={<IoLogoPlaystation />}
           linkHref="/grok"
           linkText="Grok"
@@ -62,7 +78,7 @@ const Sidebar = ({ classname }: SidebarProps) => {
         />
         <NavLink
           linkIcon={<IoPersonCircleSharp />}
-          linkHref="/rg5353070"
+          linkHref={`/${username}`}
           linkText="Profile"
         />
         <NavLink linkIcon={<CiSettings />} linkHref="/blog" linkText="More" />
