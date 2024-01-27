@@ -9,6 +9,10 @@ import {
   doc,
 } from "firebase/firestore";
 import { NextResponse } from "next/server";
+import StartingProfilePics, { coverImages } from "@/lib/ProfilePics";
+import getRandomNumberInRange from "@/lib/GenerateRandom";
+import { serverTimestamp } from "firebase/firestore";
+import { extractUsername } from "@/lib/ExtractUsername";
 
 export async function GET() {
   console.log("inside success route for auth");
@@ -20,18 +24,36 @@ export async function GET() {
 
   // if the user is new user  store it in the database
   const q = query(collection(db, "users"), where("userId", "==", user.id));
+
   const querySnapshot = await getDocs(q);
 
   if (querySnapshot.empty) {
     //there was no user found with this name
     // it means the user is registering for the first time
 
+    let extractedUserName = extractUsername(user?.email);
+
+    let userProfilePicture =
+      "https://images.unsplash.com/photo-1668342482782-582a821eaa59?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
+    let userCoverPicture =
+      "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
     await setDoc(doc(db, "users", user.id), {
+      userId: user.id,
       first_name: user.given_name,
       last_name: user.family_name,
-      userId: user.id,
+      user_name: extractedUserName,
       user_email: user.email,
-      profile_picture: user.picture,
+      user_bio: "sample staring bio for starting",
+      user_location: "default Location",
+      user_category: "Community",
+      followers: 0,
+      following: 0,
+      is_verified: false,
+      profile_picture: userProfilePicture,
+      cover_picture: userCoverPicture,
+      date_joined: serverTimestamp(),
     });
   }
 

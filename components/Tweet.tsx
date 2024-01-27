@@ -34,9 +34,9 @@ const Tweet = ({
   datePublished,
 }: TweetProps) => {
   return (
-    <Link href={`/${userName}/status/${tweetId}`}>
-      <div className=" border-b transition hover:bg-slate-800">
-        <div className="px-4 pt-6">
+    <div className=" border-b transition hover:bg-slate-800">
+      <div className="px-4 pt-6">
+        <Link href={`/${userName}/status/${tweetId}`}>
           <div
             className=""
             style={{
@@ -45,7 +45,7 @@ const Tweet = ({
               gap: "0.5rem",
             }}
           >
-            <div className="relative h-[50px]">
+            <div className="relative aspect-1">
               <Image
                 src={userImg}
                 alt="profile photo of a person"
@@ -67,28 +67,28 @@ const Tweet = ({
                     <MdVerified />
                   </span>
                 ) : null}
-                <span className="ml-2 font-semibold italic text-gray-600">
+                <span className="ml-2 text-xs font-semibold italic text-gray-600">
                   {userName} / {datePublished}
                 </span>
               </div>
-              <div className="text-pretty text-base leading-snug tracking-wide">
+              <div className="text-pretty text-sm leading-snug tracking-wide md:text-base">
                 <p>{tweetText}</p>
-              </div>
-              <div className="mt-2 flex items-center justify-between">
-                <CommentButton />
-                <RetweetButton />
-                <TweetLikeButton />
-                <GiNetworkBars className="text-lg text-slate-500" />
-                <div className="flex">
-                  <BookmarkTweetButton />
-                  <ShareTweetButton />
-                </div>
               </div>
             </div>
           </div>
+        </Link>
+        <div className="mt-2 flex items-center justify-between">
+          <CommentButton />
+          <RetweetButton />
+          <TweetLikeButton />
+          <GiNetworkBars className="text-lg text-slate-500" />
+          <div className="flex items-center">
+            <BookmarkTweetButton tweetId={"asdasd"} userId={"dsaasd"} />
+            <ShareTweetButton />
+          </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

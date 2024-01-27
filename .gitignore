@@ -16,6 +16,10 @@
 # production
 /build
 
+
+functions/node_modules
+
+
 # misc
 .DS_Store
 *.pem

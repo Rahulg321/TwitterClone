@@ -42,9 +42,9 @@ const NewTweetForm = () => {
   };
 
   return (
-    <div className="mb-2 max-w-[65ch]">
+    <div className="mb-2 hidden max-w-[65ch] md:block">
       <div className="mt-6 px-10">
-        <button className="rounded-lg border border-pink-500 px-4  text-pink-500 transition hover:bg-pink-800">
+        <button className="text-primary border-primary rounded-lg border  px-4 transition hover:scale-110">
           Everyone
         </button>
 
@@ -57,14 +57,14 @@ const NewTweetForm = () => {
           ref={tweetRef}
         />
 
-        <div className="mb-3 flex items-center justify-start border-b-2 pb-2 text-pink-500 ">
-          <div className="flex cursor-pointer items-center rounded-xl px-2 transition hover:bg-pink-800">
+        <div className="text-primary mb-3 flex items-center justify-start border-b-2 pb-2">
+          <div className="border-primary flex cursor-pointer items-center rounded-xl border px-2 transition hover:scale-110">
             <FaEarthAfrica />
             <span className="ml-2">Everyone can reply</span>
           </div>
         </div>
         <div className="mb-2 flex items-center justify-between">
-          <div className="flex gap-4 text-xl text-pink-500">
+          <div className="text-primary flex gap-4 text-xl">
             <GrGallery />
             <MdOutlineGifBox />
             <IoListSharp />
@@ -73,7 +73,7 @@ const NewTweetForm = () => {
             <FaLocationDot />
           </div>
           <button
-            className="mb-2 rounded-xl bg-pink-500 px-6 py-2 transition hover:bg-pink-800"
+            className="bg-primary mb-2 rounded-xl px-6 py-2 transition hover:scale-110"
             onClick={submitTweet}
           >
             {loading ? "Submitting Tweet" : "Post"}

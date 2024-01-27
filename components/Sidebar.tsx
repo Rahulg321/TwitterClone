@@ -15,6 +15,7 @@ import NewTweetModal from "./Modals/NewTweetModal";
 import { IoBookmarks } from "react-icons/io5";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { extractUsername } from "@/lib/ExtractUsername";
+import { FaUsersLine } from "react-icons/fa6";
 
 type SidebarProps = {
   classname?: string;
@@ -30,7 +31,9 @@ const Sidebar = async ({ classname }: SidebarProps) => {
   }
 
   return (
-    <div className={clsx("border-r-2 py-4 pl-24 pr-12", classname)}>
+    <div
+      className={clsx("border-r-2 py-4 md:pl-14 xl:pl-24 xl:pr-12", classname)}
+    >
       <div className="sticky top-2">
         <div className="mb-4 ml-4 text-4xl">
           <FaXTwitter />
@@ -57,9 +60,9 @@ const Sidebar = async ({ classname }: SidebarProps) => {
           linkText="Bookmarks"
         />
         <NavLink
-          linkIcon={<IoLogoPlaystation />}
-          linkHref="/grok"
-          linkText="Grok"
+          linkIcon={<FaUsersLine />}
+          linkHref="/connect"
+          linkText="Connect"
         />
         <NavLink
           linkIcon={<LiaClipboardListSolid />}
@@ -82,6 +85,7 @@ const Sidebar = async ({ classname }: SidebarProps) => {
           linkText="Profile"
         />
         <NavLink linkIcon={<CiSettings />} linkHref="/blog" linkText="More" />
+
         <NewTweetModal />
       </div>
     </div>

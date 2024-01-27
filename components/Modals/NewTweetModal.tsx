@@ -19,7 +19,7 @@ const NewTweetModal = () => {
   return (
     <>
       <button
-        className="mt-4 w-full rounded-xl bg-pink-600 px-8 py-4 transition hover:bg-pink-800"
+        className="bg-primary mt-4 w-full rounded-xl px-8 py-4 transition hover:scale-110"
         onClick={onClick}
       >
         Post

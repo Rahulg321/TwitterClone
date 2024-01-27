@@ -2,31 +2,118 @@
 @tailwind components;
 @tailwind utilities;
 
-.parent{
-  display: grid;
-  grid-template-columns: minmax(150px, 30%) 1fr minmax(150px, 30%);
+
+
+.header{
+  display: block;
+  grid-area: header;
 }
+
+
+.left{
+  grid-area: left;
+  display: none;
+}
+.right{
+  grid-area: right;
+  display: none;
+}
+
+.feed{
+  grid-area: feed;
+}
+
 
 @layer base{
   :root{
     --background: #33272a;
-    --static: #33272a;
+    --static: #1e293b;
+    --primary:#fe0760;
+    --accent:#64748b;
   }
+
+}
+
+
+@media(min-width:768px){
+    .parent{
+      display: grid;
+      grid-template-areas: 
+      "left feed feed";
+      grid-template-columns: 150px 1fr;
+    }
+
+    .left{
+      display: block;
+    }
+
+    .feed{
+      margin-right: 4rem;
+    }
+
+    .header{
+      display: none;
+    }
+}
+
+
+@media(min-width:1024px){
+    .parent{
+      grid-template-columns: 150px 1fr 1fr 1fr 1fr;
+      grid-template-areas: 
+      "left feed feed feed right";
+    }
+
+    .right{
+      display: block;
+    }
+    .feed{
+      margin-right: 0;
+      column-span: 2;
+    }
+}
+
+@media(min-width:1280px){
+    .parent{
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-areas: 
+      "left feed feed right";
+    }
+
+    .right{
+      display: block;
+    }
+    .feed{
+      margin-right: 0;
+      column-span: 2;
+    }
 }
 
 
 
-@layer components{
-  
+
+@layer components{ 
   .external-link{
   @apply text-pink-400 underline transition italic
   }
+  .user-input{
+  @apply bg-slate-700 rounded-xl px-4 py-2
+  }
 }
 
 
-.modal{
-  min-width: 65ch;
-  max-width: 65ch;
+@media (min-width: 768px) {
+  .modal{
+    min-width: 65ch;
+    max-width: 65ch;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal{
+    min-height: 100vh;
+    min-width: 100%; /* Take full width on screens up to 768px */
+  }
 }
 
 .modal::backdrop{
