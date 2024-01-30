@@ -18,7 +18,7 @@ export async function GET(request: Request) {
   const user = await getUser();
 
   if (!user) {
-    return NextResponse.redirect("/login");
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
   // if (!user || user == null || !user.id)
@@ -61,3 +61,5 @@ export async function GET(request: Request) {
 
   return NextResponse.redirect(new URL("/home", request.url));
 }
+
+export const dynamic = "force-dynamic";
