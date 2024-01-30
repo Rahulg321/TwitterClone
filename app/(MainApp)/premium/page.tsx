@@ -2,11 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { RxCross1 } from "react-icons/rx";
 
-const page = () => {
-  const [modalOpen, setModalOpen] = useState(true);
+const PremiumPage = () => {
   const modalRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
 
@@ -72,11 +71,11 @@ const page = () => {
               </span>
             </div>
           </div>
-          <button className="bg-primary mt-4 w-full rounded-2xl px-4 py-2">
+          <button className="mt-4 w-full rounded-2xl bg-primary px-4 py-2">
             Subscribe
           </button>
         </div>
-        <p className="text-primary mt-4 text-center text-sm italic">
+        <p className="mt-4 text-center text-sm italic text-primary">
           Learn more about premium and verified organizations
         </p>
       </div>
@@ -84,4 +83,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default PremiumPage;
