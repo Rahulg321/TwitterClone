@@ -9,8 +9,6 @@ import {
   doc,
 } from "firebase/firestore";
 import { NextResponse } from "next/server";
-import StartingProfilePics, { coverImages } from "@/lib/ProfilePics";
-import getRandomNumberInRange from "@/lib/GenerateRandom";
 import { serverTimestamp } from "firebase/firestore";
 import { extractUsername } from "@/lib/ExtractUsername";
 
@@ -19,8 +17,12 @@ export async function GET(request: Request) {
   const { getUser, getOrganization } = getKindeServerSession();
   const user = await getUser();
 
-  if (!user || user == null || !user.id)
-    throw new Error("something went wrong with authentication" + user);
+  if (!user) {
+    return NextResponse.redirect("/login");
+  }
+
+  // if (!user || user == null || !user.id)
+  //   throw new Error("something went wrong with authentication" + user);
 
   // if the user is new user  store it in the database
   const q = query(collection(db, "users"), where("userId", "==", user.id));
