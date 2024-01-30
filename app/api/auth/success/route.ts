@@ -31,7 +31,7 @@ export async function GET() {
     //there was no user found with this name
     // it means the user is registering for the first time
 
-    let extractedUserName = extractUsername(user?.email);
+    let extractedUserName = extractUsername(user?.email as string);
 
     let userProfilePicture =
       "https://images.unsplash.com/photo-1668342482782-582a821eaa59?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
