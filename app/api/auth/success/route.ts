@@ -14,7 +14,7 @@ import getRandomNumberInRange from "@/lib/GenerateRandom";
 import { serverTimestamp } from "firebase/firestore";
 import { extractUsername } from "@/lib/ExtractUsername";
 
-export async function GET() {
+export async function GET(request: Request) {
   console.log("inside success route for auth");
   const { getUser, getOrganization } = getKindeServerSession();
   const user = await getUser();
@@ -57,5 +57,5 @@ export async function GET() {
     });
   }
 
-  return NextResponse.redirect("http://localhost:3000/home");
+  return NextResponse.redirect(new URL("/home", request.url));
 }
